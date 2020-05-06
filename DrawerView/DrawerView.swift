@@ -314,14 +314,7 @@ private struct ChildScrollViewInfo {
     ///
     /// - parameter view The view to contain the drawer in.
     public func attachTo(view: UIView) {
-
-        if self.superview == nil {
-            self.translatesAutoresizingMaskIntoConstraints = false
-            view.addSubview(self)
-        } else if self.superview !== view {
-            log("Invalid state; superview already set when called attachTo(view:)")
-        }
-
+        
         topConstraint = self.topAnchor.constraint(equalTo: view.topAnchor, constant: self.topMargin)
         heightConstraint = self.heightAnchor.constraint(greaterThanOrEqualTo: view.heightAnchor, multiplier: 1, constant: -self.topSpace)
         let bottomConstraint = self.bottomAnchor.constraint(greaterThanOrEqualTo: view.bottomAnchor)
