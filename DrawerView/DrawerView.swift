@@ -308,12 +308,21 @@ private struct ChildScrollViewInfo {
             }
         }
     }
+    
+    public func attachToSuperview() {
+        guard let superview = superview else {
+            return log("Invalid state: superview is nil")
+        }
+        attachTo(view: superview)
+    }
 
     /// Attaches the drawer to the given view. The drawer will update its constraints
     /// to match the bounds of the target view.
     ///
     /// - parameter view The view to contain the drawer in.
     public func attachTo(view: UIView) {
+        
+        self.translatesAutoresizingMaskIntoConstraints = false
         
         topConstraint = self.topAnchor.constraint(equalTo: view.topAnchor, constant: self.topMargin)
         heightConstraint = self.heightAnchor.constraint(greaterThanOrEqualTo: view.heightAnchor, multiplier: 1, constant: -self.topSpace)
